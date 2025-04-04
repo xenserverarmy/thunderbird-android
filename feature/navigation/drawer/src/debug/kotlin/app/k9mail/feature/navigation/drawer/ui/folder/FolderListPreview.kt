@@ -6,6 +6,7 @@ import app.k9mail.core.ui.compose.designsystem.PreviewWithTheme
 import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_FOLDER
 import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_TREE_FOLDER
 import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_TREE_FOLDER_WITH_UNIFIED_FOLDER
+import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_TREE_FOLDER_WITH_NESTED_FOLDERS
 import app.k9mail.feature.navigation.drawer.ui.FakeData.EMPTY_DISPLAY_TREE_FOLDER
 
 @Composable
@@ -41,6 +42,19 @@ internal fun FolderListWithUnifiedFolderPreview() {
         FolderList(
             rootFolder = DISPLAY_TREE_FOLDER_WITH_UNIFIED_FOLDER,
             selectedFolder = DISPLAY_FOLDER,
+            onFolderClick = {},
+            showStarredCount = false,
+        )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+internal fun FolderListWithUnifiedFolderPreviewSelected() {
+    PreviewWithTheme {
+        FolderList(
+            rootFolder = DISPLAY_TREE_FOLDER_WITH_NESTED_FOLDERS,
+            selectedFolder = null,
             onFolderClick = {},
             showStarredCount = false,
         )
