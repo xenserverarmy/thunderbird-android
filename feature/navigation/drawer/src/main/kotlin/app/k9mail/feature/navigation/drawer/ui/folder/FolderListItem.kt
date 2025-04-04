@@ -18,9 +18,9 @@ import app.k9mail.core.ui.compose.theme2.MainTheme
 import app.k9mail.feature.navigation.drawer.R
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayAccountFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayFolder
+import app.k9mail.feature.navigation.drawer.domain.entity.DisplayTreeFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolderType
-import app.k9mail.feature.navigation.drawer.domain.entity.TreeFolder
 import app.k9mail.legacy.ui.folder.FolderNameFormatter
 
 @Composable
@@ -31,7 +31,7 @@ internal fun FolderListItem(
     showStarredCount: Boolean,
     folderNameFormatter: FolderNameFormatter,
     modifier: Modifier = Modifier,
-    treeFolder: TreeFolder? = null,
+    treeFolder: DisplayTreeFolder? = null,
     parentPrefix: String? = "",
     indentationLevel: Int = 1,
 ) {
@@ -41,8 +41,8 @@ internal fun FolderListItem(
     var starredCount = displayFolder.starredMessageCount
 
     if (treeFolder !== null && !isExpanded.value) {
-        unreadCount = treeFolder.getAllUnreadMessageCount()
-        starredCount = treeFolder.getAllStarredMessageCount()
+        unreadCount = treeFolder.totalUnreadCount
+        starredCount = treeFolder.totalStarredCount
     }
 
     Column(modifier = Modifier.fillMaxWidth().animateContentSize()) {

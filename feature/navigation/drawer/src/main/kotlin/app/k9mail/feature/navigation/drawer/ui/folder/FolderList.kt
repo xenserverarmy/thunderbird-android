@@ -14,13 +14,13 @@ import app.k9mail.core.ui.compose.designsystem.atom.DividerHorizontal
 import app.k9mail.core.ui.compose.theme2.MainTheme
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayAccountFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayFolder
+import app.k9mail.feature.navigation.drawer.domain.entity.DisplayTreeFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolder
-import app.k9mail.feature.navigation.drawer.domain.entity.TreeFolder
 import app.k9mail.legacy.ui.folder.FolderNameFormatter
 
 @Composable
 internal fun FolderList(
-    rootFolder: TreeFolder,
+    rootFolder: DisplayTreeFolder,
     selectedFolder: DisplayFolder?,
     onFolderClick: (DisplayFolder) -> Unit,
     showStarredCount: Boolean,
@@ -44,11 +44,11 @@ internal fun FolderList(
             if (currentDisplayFolder is DisplayAccountFolder) {
                 FolderListItem(
                     displayFolder = currentDisplayFolder,
+                    treeFolder = folder,
                     selected = currentDisplayFolder.folder == selectedFolder,
                     showStarredCount = showStarredCount,
                     onClick = onFolderClick,
                     folderNameFormatter = folderNameFormatter,
-                    treeFolder = folder,
                 )
             }
             if (currentDisplayFolder is DisplayUnifiedFolder) {

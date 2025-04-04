@@ -3,9 +3,9 @@ package app.k9mail.feature.navigation.drawer.domain
 import app.k9mail.feature.navigation.drawer.NavigationDrawerExternalContract.DrawerConfig
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayAccount
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayFolder
+import app.k9mail.feature.navigation.drawer.domain.entity.DisplayTreeFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolderType
-import app.k9mail.feature.navigation.drawer.domain.entity.TreeFolder
 import kotlinx.coroutines.flow.Flow
 
 internal interface DomainContract {
@@ -27,8 +27,8 @@ internal interface DomainContract {
             operator fun invoke(accountId: String, includeUnifiedFolders: Boolean): Flow<List<DisplayFolder>>
         }
 
-        fun interface GetTreeFolders {
-            operator fun invoke(folders: List<DisplayFolder>, maxDepth: Int): TreeFolder
+        fun interface GetDisplayTreeFolder {
+            operator fun invoke(folders: List<DisplayFolder>, maxDepth: Int): DisplayTreeFolder
         }
 
         /**

@@ -1,6 +1,7 @@
 package app.k9mail.feature.navigation.drawer.ui
 
 import app.k9mail.feature.navigation.drawer.NavigationDrawerExternalContract.DrawerConfig
+import app.k9mail.feature.navigation.drawer.domain.entity.DisplayTreeFolder
 import app.k9mail.feature.navigation.drawer.ui.DrawerContract.State
 import assertk.assertThat
 import assertk.assertions.isEqualTo
@@ -22,6 +23,13 @@ internal class DrawerStateTest {
                 ),
                 accounts = persistentListOf(),
                 selectedAccountId = null,
+                rootFolder = DisplayTreeFolder(
+                    displayFolder = null,
+                    displayName = null,
+                    totalUnreadCount = 0,
+                    totalStarredCount = 0,
+                    children = persistentListOf(),
+                ),
                 folders = persistentListOf(),
                 selectedFolderId = null,
                 isLoading = false,

@@ -7,6 +7,7 @@ import app.k9mail.core.mail.folder.api.FolderType
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayAccount
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayAccountFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayFolder
+import app.k9mail.feature.navigation.drawer.domain.entity.DisplayTreeFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolder
 import app.k9mail.feature.navigation.drawer.domain.entity.DisplayUnifiedFolderType
 import app.k9mail.legacy.account.Identity
@@ -64,11 +65,58 @@ internal object FakeData {
         starredMessageCount = 5,
     )
 
+    val DISPLAY_TREE_FOLDER = DisplayTreeFolder(
+        displayFolder = null,
+        displayName = null,
+        totalUnreadCount = 14,
+        totalStarredCount = 5,
+        children = persistentListOf(
+            DisplayTreeFolder(
+                displayFolder = DISPLAY_FOLDER,
+                displayName = DISPLAY_FOLDER.folder.name,
+                totalUnreadCount = 14,
+                totalStarredCount = 5,
+                children = persistentListOf(),
+            ),
+        ),
+    )
+
+    val EMPTY_DISPLAY_TREE_FOLDER = DisplayTreeFolder(
+        displayFolder = null,
+        displayName = null,
+        totalUnreadCount = 0,
+        totalStarredCount = 0,
+        children = persistentListOf(),
+    )
+
     val UNIFIED_FOLDER = DisplayUnifiedFolder(
         id = "unified_inbox",
         unifiedType = DisplayUnifiedFolderType.INBOX,
         unreadMessageCount = 123,
         starredMessageCount = 567,
+    )
+
+    val DISPLAY_TREE_FOLDER_WITH_UNIFIED_FOLDER = DisplayTreeFolder(
+        displayFolder = null,
+        displayName = null,
+        totalUnreadCount = 14,
+        totalStarredCount = 5,
+        children = persistentListOf(
+            DisplayTreeFolder(
+                displayFolder = UNIFIED_FOLDER,
+                displayName = null,
+                totalUnreadCount = 7,
+                totalStarredCount = 2,
+                children = persistentListOf(),
+            ),
+            DisplayTreeFolder(
+                displayFolder = DISPLAY_FOLDER,
+                displayName = DISPLAY_FOLDER.folder.name,
+                totalUnreadCount = 7,
+                totalStarredCount = 3,
+                children = persistentListOf(),
+            ),
+        ),
     )
 
     fun createAccountList(): PersistentList<DisplayAccount> {

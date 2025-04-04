@@ -5,8 +5,8 @@ import app.k9mail.feature.navigation.drawer.domain.DomainContract
 import app.k9mail.feature.navigation.drawer.domain.DomainContract.UseCase
 import app.k9mail.feature.navigation.drawer.domain.usecase.GetDisplayAccounts
 import app.k9mail.feature.navigation.drawer.domain.usecase.GetDisplayFoldersForAccount
+import app.k9mail.feature.navigation.drawer.domain.usecase.GetDisplayTreeFolder
 import app.k9mail.feature.navigation.drawer.domain.usecase.GetDrawerConfig
-import app.k9mail.feature.navigation.drawer.domain.usecase.GetTreeFolders
 import app.k9mail.feature.navigation.drawer.domain.usecase.SaveDrawerConfig
 import app.k9mail.feature.navigation.drawer.domain.usecase.SyncAccount
 import app.k9mail.feature.navigation.drawer.domain.usecase.SyncAllAccounts
@@ -49,8 +49,8 @@ val navigationDrawerModule: Module = module {
         )
     }
 
-    single<UseCase.GetTreeFolders> {
-        GetTreeFolders()
+    single<UseCase.GetDisplayTreeFolder> {
+        GetDisplayTreeFolder()
     }
 
     single<UseCase.SyncAccount> {
@@ -72,7 +72,7 @@ val navigationDrawerModule: Module = module {
             saveDrawerConfig = get(),
             getDisplayAccounts = get(),
             getDisplayFoldersForAccount = get(),
-            getTreeFolders = get(),
+            getDisplayTreeFolder = get(),
             syncAccount = get(),
             syncAllAccounts = get(),
         )

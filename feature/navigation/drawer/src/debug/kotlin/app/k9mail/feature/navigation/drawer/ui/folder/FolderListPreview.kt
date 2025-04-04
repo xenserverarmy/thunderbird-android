@@ -3,19 +3,17 @@ package app.k9mail.feature.navigation.drawer.ui.folder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import app.k9mail.core.ui.compose.designsystem.PreviewWithTheme
-import app.k9mail.feature.navigation.drawer.domain.entity.TreeFolder
 import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_FOLDER
-import app.k9mail.feature.navigation.drawer.ui.FakeData.UNIFIED_FOLDER
-import kotlinx.collections.immutable.persistentListOf
+import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_TREE_FOLDER
+import app.k9mail.feature.navigation.drawer.ui.FakeData.DISPLAY_TREE_FOLDER_WITH_UNIFIED_FOLDER
+import app.k9mail.feature.navigation.drawer.ui.FakeData.EMPTY_DISPLAY_TREE_FOLDER
 
 @Composable
 @Preview(showBackground = true)
 internal fun FolderListPreview() {
     PreviewWithTheme {
         FolderList(
-            rootFolder = TreeFolder.createFromFolders(
-                persistentListOf(DISPLAY_FOLDER),
-            ),
+            rootFolder = EMPTY_DISPLAY_TREE_FOLDER,
             selectedFolder = null,
             onFolderClick = {},
             showStarredCount = false,
@@ -28,9 +26,7 @@ internal fun FolderListPreview() {
 internal fun FolderListPreviewSelected() {
     PreviewWithTheme {
         FolderList(
-            rootFolder = TreeFolder.createFromFolders(
-                persistentListOf(DISPLAY_FOLDER),
-            ),
+            rootFolder = DISPLAY_TREE_FOLDER,
             selectedFolder = DISPLAY_FOLDER,
             onFolderClick = {},
             showStarredCount = false,
@@ -43,12 +39,7 @@ internal fun FolderListPreviewSelected() {
 internal fun FolderListWithUnifiedFolderPreview() {
     PreviewWithTheme {
         FolderList(
-            rootFolder = TreeFolder.createFromFolders(
-                persistentListOf(
-                    UNIFIED_FOLDER,
-                    DISPLAY_FOLDER,
-                ),
-            ),
+            rootFolder = DISPLAY_TREE_FOLDER_WITH_UNIFIED_FOLDER,
             selectedFolder = DISPLAY_FOLDER,
             onFolderClick = {},
             showStarredCount = false,
